@@ -147,3 +147,8 @@ def update_grade(class_id, student_id):
     enrollment.grade = new_grade
     db.session.commit()
     return jsonify({'message': 'Grade updated'}), 200
+
+@main.route('/logout')
+def logout():
+    # TODO: Clear session or logout the user
+    return redirect('/')

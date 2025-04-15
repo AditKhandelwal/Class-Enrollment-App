@@ -5,7 +5,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from app.models import User, Class, Enrollment
 from app.extensions import db
-from app.admin_views import UserAdmin, ClassAdmin, EnrollmentAdmin
+from app.admin_views import UserAdmin, ClassAdmin, EnrollmentAdmin, LogoutAdminView
 
 def create_app():
     app = Flask(__name__)
@@ -24,5 +24,6 @@ def create_app():
     admin.add_view(UserAdmin(User, db.session))
     admin.add_view(ClassAdmin(Class, db.session))
     admin.add_view(EnrollmentAdmin(Enrollment, db.session))
+    admin.add_view(LogoutAdminView(name='Logout', endpoint='logout'))
     
     return app
