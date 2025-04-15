@@ -13,9 +13,12 @@ class Class(db.Model):
     name = db.Column(db.String(100), nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
     enrollments = db.relationship('Enrollment', backref='class_', lazy=True)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    teacher = db.relationship('User', backref='classes', foreign_keys=[teacher_id])
+    time = db.Column(db.String(100))  
 
 class Enrollment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
-    grade = db.Column(db.String(5))  # Optional: for teacher to assign
+    grade = db.Column(db.String(5)) 

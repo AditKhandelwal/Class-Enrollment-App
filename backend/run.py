@@ -20,13 +20,16 @@ if __name__ == "__main__":
             print("Sample users added")
 
         if not Class.query.first():
+            teacher = User.query.filter_by(role='teacher').first()
+
             classes = [
-                Class(name="Intro to Python", capacity=3),
-                Class(name="Data Structures", capacity=2),
-                Class(name="Web Development", capacity=4)
+                Class(name="Intro to Python", capacity=3, time="MWF 9:00–10:15AM", teacher_id=teacher.id),
+                Class(name="Data Structures", capacity=2, time="TR 1:00–2:15PM", teacher_id=teacher.id),
+                Class(name="Web Development", capacity=4, time="MWF 2:00–3:15PM", teacher_id=teacher.id)
             ]
             db.session.bulk_save_objects(classes)
             db.session.commit()
-            print("Sample classes added")
+            print("Sample classes with teachers added")
+
 
     app.run(debug=True)
