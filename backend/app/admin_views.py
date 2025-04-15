@@ -13,21 +13,17 @@ class LogoutAdminView(BaseView):
 
 class UserAdmin(ModelView):
     column_list = ['id', 'email', 'role']
-    # Replace 'password_hash' with 'password' in the form
     form_columns = ['email', 'password', 'role']
     column_searchable_list = ['email']
     column_filters = ['role']
     
-    # Add a password field to the form
     form_extra_fields = {
         'password': PasswordField('Password')
     }
 
     def on_model_change(self, form, model, is_created):
-        # If a plaintext password is provided, hash it
         if form.password.data:
             model.password_hash = generate_password_hash(form.password.data)
-        # Call the parent method to proceed with the standard behavior
         return super().on_model_change(form, model, is_created)
 
 class ClassAdmin(ModelView):

@@ -150,5 +150,4 @@ def update_grade(class_id, student_id):
 
 @main.route('/logout')
 def logout():
-    # TODO: Clear session or logout the user
     return redirect('/')
