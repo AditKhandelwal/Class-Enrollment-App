@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function TeacherDashboard() {
-  const teacherId = 2; // Hardcoded for now
+  const teacherId = localStorage.getItem("userId");
   const [classes, setClasses] = useState([]);
   const [selectedClassId, setSelectedClassId] = useState(null);
   const [students, setStudents] = useState([]);

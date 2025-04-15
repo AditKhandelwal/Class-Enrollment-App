@@ -4,7 +4,7 @@ export default function StudentDashboard() {
   const [activeTab, setActiveTab] = useState('your');
   const [yourCourses, setYourCourses] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
-  const studentId = 1; // eventually replace with dynamic ID
+  const studentId = localStorage.getItem("userId");
 
   const fetchStudentClasses = () => {
     fetch(`http://localhost:5000/api/student/${studentId}/classes`)

@@ -1,4 +1,5 @@
-from app import create_app, db
+from app import create_app
+from app.extensions import db
 from app.models import User, Class
 
 app = create_app()
@@ -11,9 +12,12 @@ if __name__ == "__main__":
             from werkzeug.security import generate_password_hash
 
             users = [
-                User(email="student@example.com", password_hash=generate_password_hash("student123"), role="student"),
-                User(email="teacher@example.com", password_hash=generate_password_hash("teacher123"), role="teacher"),
-                User(email="admin@example.com", password_hash=generate_password_hash("admin123"), role="admin"),
+                User(email="student@example.com", password_hash=generate_password_hash("100%Offer!"), role="student"),
+                User(email="student2@example.com", password_hash=generate_password_hash("100%Offer!"), role="student"),
+                User(email="student3@example.com", password_hash=generate_password_hash("100%Offer!"), role="student"),
+                User(email="teacher@example.com", password_hash=generate_password_hash("100%Offer!"), role="teacher"),
+                User(email="teacher2@example.com", password_hash=generate_password_hash("100%Offer!"), role="teacher"),
+                User(email="admin@example.com", password_hash=generate_password_hash("100%Offer!"), role="admin"),
             ]
             db.session.bulk_save_objects(users)
             db.session.commit()
@@ -23,9 +27,9 @@ if __name__ == "__main__":
             teacher = User.query.filter_by(role='teacher').first()
 
             classes = [
-                Class(name="Intro to Python", capacity=3, time="MWF 9:00–10:15AM", teacher_id=teacher.id),
-                Class(name="Data Structures", capacity=2, time="TR 1:00–2:15PM", teacher_id=teacher.id),
-                Class(name="Web Development", capacity=4, time="MWF 2:00–3:15PM", teacher_id=teacher.id)
+                Class(name="Intro to Python", capacity=3, time="MWF 9:00-10:15AM", teacher_id=teacher.id),
+                Class(name="Data Structures", capacity=2, time="TR 1:00-2:15PM", teacher_id=teacher.id),
+                Class(name="Web Development", capacity=4, time="MWF 2:00-3:15PM", teacher_id=teacher.id)
             ]
             db.session.bulk_save_objects(classes)
             db.session.commit()

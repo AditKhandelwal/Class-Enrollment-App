@@ -16,7 +16,8 @@ def login():
     if not user or not check_password_hash(user.password_hash, password):
         return jsonify({"message": "Invalid credentials"}), 401
 
-    return jsonify({"message": "Login successful", "role": user.role}), 200
+    return jsonify({"message": "Login successful", "role": user.role, "id": user.id}), 200
+
 
 
 # Get Student's Classes

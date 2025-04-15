@@ -19,11 +19,14 @@ function LoginPage() {
       });
 
       const data = await response.json();
-
+      
       if (!response.ok) {
         setError(data.message || 'Login failed');
         return;
       }
+
+      localStorage.setItem("userId", data.id);
+      localStorage.setItem("role", data.role);
 
       switch (data.role) {
         case 'student':
@@ -33,8 +36,9 @@ function LoginPage() {
           navigate('/teacher');
           break;
         case 'admin':
-          navigate('/admin');
+          window.location.href = 'http://localhost:5000/admin';
           break;
+          
         default:
           setError("Unknown role");
       }
@@ -53,6 +57,7 @@ function LoginPage() {
           <label style={styles.label}>Email:</label>
           <input
             type="email"
+            autoComplete="off"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
