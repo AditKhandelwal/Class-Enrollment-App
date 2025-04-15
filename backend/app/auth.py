@@ -1,0 +1,1 @@
+ # Authentication helpers (login, logout functions)
